@@ -3,14 +3,14 @@ init:
 	git add .
 	git commit -m "init"
 	git branch -M main
-	git remote add origin git@github.com:rust-learn-days/rbuild-runtime.git
+	git remote add origin git@github.com:labring-actions/rbuild-runtime.git
 	pip install pre-commit
 	cargo install --locked cargo-deny
 	cargo install typos-cli
 	cargo install git-cliff
 	cargo install cargo-nextest --locked
 	pre-commit install
-	sed -i '' 's#rust-learn-days/template#rust-learn-days/rbuild-runtime#g' cliff.toml
+	sed -i '' 's#rust-learn-days/template#labring-actions/rbuild-runtime#g' cliff.toml
 
 install-cross:
     cargo install cross --git https://github.com/cross-rs/cross

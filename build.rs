@@ -9,6 +9,14 @@ use reqwest;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let os = env::consts::OS;
+    if os == "macos" {
+        println!("cargo:warning=sealos only support linux");
+        return Ok(()); // macos 不支持 sealos
+    } else if os != "linux" {
+        println!("cargo:warning=sealos only support linux");
+        return Err("sealos only support linux".into());
+    }
     let arch = env::consts::ARCH;
     let url = match arch {
         "x86_64" => "https://github.com/labring/sealos/releases/download/v4.3.7/sealos_4.3.7_linux_amd64.tar.gz",

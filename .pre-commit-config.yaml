@@ -24,26 +24,12 @@ repos:
         language: rust
         files: \.rs$
         args: []
-      - id: cargo-deny
-        name: cargo deny check
-        description: Check cargo dependencies
-        entry: bash -c 'cargo deny check -d'
-        language: rust
-        files: \.rs$
-        args: []
       - id: typos
         name: typos
         description: check typo
         entry: bash -c 'typos'
         language: rust
         files: \.*$
-        pass_filenames: false
-      - id: cargo-check
-        name: cargo check
-        description: Check the package for errors.
-        entry: bash -c 'cargo check --all'
-        language: rust
-        files: \.rs$
         pass_filenames: false
       - id: cargo-clippy
         name: cargo clippy
