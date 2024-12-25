@@ -1,5 +1,10 @@
 pub use cli::*;
-pub use logger::*;
+use enum_dispatch::enum_dispatch;
 
 mod cli;
-mod logger;
+
+#[allow(async_fn_in_trait)]
+#[enum_dispatch]
+pub trait CmdExec {
+    async fn execute(self) -> anyhow::Result<()>;
+}

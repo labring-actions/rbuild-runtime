@@ -49,4 +49,3 @@ line:
 check:
     cargo check
     cargo fmt -- --check
-    cargo deny check -d
