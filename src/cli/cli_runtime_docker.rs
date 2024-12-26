@@ -1,7 +1,7 @@
-use crate::CmdExec;
+use crate::{BaseOpts, CmdExec};
 use clap::Parser;
 
-#[derive(Parser, Debug)]
+#[derive(Parser, Debug, Clone)]
 pub struct DockerOpts {
     #[arg(long, long_help = "docker cli version", default_value = "20.10.9")]
     pub version: String,
@@ -10,7 +10,7 @@ pub struct DockerOpts {
 }
 
 impl CmdExec for DockerOpts {
-    async fn execute(self) -> anyhow::Result<()> {
+    async fn execute(self, _base_opts: BaseOpts) -> anyhow::Result<()> {
         println!(
             "docker version: {}, cri version: {:?}",
             self.version, self.cri_docker_version

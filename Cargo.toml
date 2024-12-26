@@ -3,7 +3,7 @@ name = "rbuild-runtime"
 version = "0.1.0"
 authors = ["cuisongliu <cuisongliu@qq.com>"]
 edition = "2021"
-description = "rbuild-runtime, a rusty-hermit application"
+description = "rbuild-runtime, a rusty-hermit application.\n\nversion description: https://sealos.io/docs/5.0.0/developer-guide/lifecycle-management/quick-start/deploy-kubernetes#kubernetes-compatibility-with-containerd"
 repository = "https://github.com/labring-actions/rbuild-runtime"
 license-file = "LICENSE"
 [dependencies]

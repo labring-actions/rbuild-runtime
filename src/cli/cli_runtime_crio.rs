@@ -1,10 +1,10 @@
 use super::parse_container_runtime;
-use crate::{CmdExec, ContainerRuntime};
+use crate::{BaseOpts, CmdExec, ContainerRuntime};
 use clap::Parser;
 
-#[derive(Parser, Debug)]
-pub struct ContainerdOpts {
-    #[arg(long, default_value = "v1.6.23")]
+#[derive(Parser, Debug, Clone)]
+pub struct CrioOpts {
+    #[arg(long, long_help = "cril version", default_value = "20.10.9")]
     pub version: String,
     #[arg(
         short, long, long_help = "using container runtime name", default_value = "runc", value_parser = parse_container_runtime
@@ -12,10 +12,10 @@ pub struct ContainerdOpts {
     pub runtime: ContainerRuntime,
 }
 
-impl CmdExec for ContainerdOpts {
-    async fn execute(self) -> anyhow::Result<()> {
+impl CmdExec for CrioOpts {
+    async fn execute(self, _base_opts: BaseOpts) -> anyhow::Result<()> {
         println!(
-            "containerd version: {}, runtime: {:?}",
+            "crio version: {}, runtime: {:?}",
             self.version, self.runtime
         );
         Ok(())

@@ -1,10 +1,11 @@
-use crate::cli::cli_build_containerd::ContainerdOpts;
-use crate::cli::cli_build_crio::CrioOpts;
-use crate::cli::cli_build_docker::DockerOpts;
+use crate::cli::cli_runtime_containerd::ContainerdOpts;
+use crate::cli::cli_runtime_crio::CrioOpts;
+use crate::cli::cli_runtime_docker::DockerOpts;
+use crate::CacheOpts;
 use clap::Parser;
 use enum_dispatch::enum_dispatch;
 
-#[derive(Parser, Debug)]
+#[derive(Parser, Debug, Clone)]
 #[enum_dispatch(CmdExec)]
 pub enum Runtime {
     #[clap(
@@ -16,4 +17,6 @@ pub enum Runtime {
     Docker(DockerOpts),
     #[clap(name = "crio", about = "build the runtime for crio runtime images")]
     Crio(CrioOpts),
+    #[clap(name = "cache", about = "cache the runtime images")]
+    Cache(CacheOpts),
 }

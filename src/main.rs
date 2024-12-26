@@ -15,6 +15,6 @@ async fn main() -> anyhow::Result<()> {
     info!("log level set to: {:?}", LevelFilter::Info);
     trace!("asset: {:?}", asset.data.len());
     let opts: BuildOpts = BuildOpts::parse();
-    opts.cmd.execute().await?;
+    opts.cmd.execute(opts.base_opts.clone()).await?;
     Ok(())
 }
