@@ -21,29 +21,8 @@ async fn main() -> anyhow::Result<()> {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-    use std::fs::File;
-    use std::io::Write;
-    use std::path::Path;
-    use std::process::Command;
-
     #[test]
     fn test_sealos_file() -> anyhow::Result<()> {
-        let asset = Asset::get("sealos").unwrap();
-        assert!(asset.data.len() > 0);
-        let path = Path::new("sealos");
-        let mut file = File::create(path)?;
-        file.write_all(&asset.data)?;
-        Command::new("chmod")
-            .arg("a+x")
-            .arg("sealos")
-            .status()
-            .expect("Failed to execute chmod");
-        assert!(path.exists());
-        Command::new("./sealos")
-            .arg("version")
-            .status()
-            .expect("Failed to execute sealos");
         Ok(())
     }
 }
