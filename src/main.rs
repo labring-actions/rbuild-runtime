@@ -22,7 +22,12 @@ async fn main() -> anyhow::Result<()> {
 #[cfg(test)]
 mod tests {
     #[test]
-    fn test_sealos_file() -> anyhow::Result<()> {
+    fn test_file() -> anyhow::Result<()> {
+        let asset = super::Asset::get("kube_versions.json").unwrap();
+        let s = serde_json::from_slice::<Vec<Vec<String>>>(&asset.data)?;
+        for v in s {
+            assert_ne!(v.len(), 0);
+        }
         Ok(())
     }
 }
