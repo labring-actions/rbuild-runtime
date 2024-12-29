@@ -21,12 +21,14 @@ async fn main() -> anyhow::Result<()> {
 
 #[cfg(test)]
 mod tests {
+    use std::collections::BTreeMap;
+
     #[test]
     fn test_file() -> anyhow::Result<()> {
         let asset = super::Asset::get("kube_versions.json").unwrap();
-        let s = serde_json::from_slice::<Vec<Vec<String>>>(&asset.data)?;
-        for v in s {
-            assert_ne!(v.len(), 0);
+        let s = serde_json::from_slice::<BTreeMap<String, Vec<String>>>(&asset.data)?;
+        for (_key, value) in s {
+            assert_ne!(value.len(), 0);
         }
         Ok(())
     }
